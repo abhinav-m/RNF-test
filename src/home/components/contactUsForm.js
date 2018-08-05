@@ -1,5 +1,38 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
+import SendIcon from '@material-ui/icons/Send';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit
+  },
+  rightIcon: {
+    marginLeft: theme.spacing.unit
+  },
+  iconSmall: {
+    fontSize: 20
+  }
+});
+
+const FormButton = ({ classes }) => (
+  <Button
+    variant="contained"
+    color="primary"
+    className={classes.button}
+    type="submit"
+  >
+    Send
+    <SendIcon className={classes.rightIcon} />
+  </Button>
+);
+
+const SubmitFormButton = withStyles(styles)(FormButton);
 
 class ContactUsForm extends Component {
   constructor(props) {
@@ -38,6 +71,7 @@ class ContactUsForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     //TODO:dispatch action to save contact us details.
+    console.log('SENDING FORM', this.state.emailAddress);
   }
 
   render() {
@@ -46,6 +80,7 @@ class ContactUsForm extends Component {
         <div>
           <TextField
             hintText="Enter your first name."
+            label="First Name"
             floatingLabelText="Enter your first name."
             errorText={this.state.validations.firstName}
           />
@@ -64,7 +99,7 @@ class ContactUsForm extends Component {
             name="email"
             hintText="Enter your email address."
             floatingLabelText="Enter your last name."
-            label="Last Name"
+            label="Email address"
             errorText={this.state.validations.lastName}
           />
         </div>
@@ -87,10 +122,7 @@ class ContactUsForm extends Component {
           />
         </div>
         <div>
-          <button type="submit">Submit</button>
-          <button type="button" onClick={this.resetForm}>
-            Clear Values
-          </button>
+          <SubmitFormButton type="submit" />
         </div>
       </form>
     );

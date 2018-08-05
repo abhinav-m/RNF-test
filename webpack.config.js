@@ -54,7 +54,8 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    watchContentBase:true,
+    watchContentBase: true,
     contentBase: './dist/'
-  }
+  },
+  devtool: 'source-map'
 };
