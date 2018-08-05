@@ -54,6 +54,7 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
+    watchContentBase:true,
     contentBase: './dist/'
   }
 };
